@@ -1,6 +1,6 @@
 ---
 name: prompt-refine
-description: Optimize user prompts using techniques from the Prompt_techniques repository. Use this skill whenever the user is about to send a prompt to an AI (including you) and wants it improved, whenever they explicitly ask to "refine" or "optimize" or "improve" a prompt, whenever they type /prompt-refine, or whenever they share a prompt draft and seem uncertain about its quality. Also trigger when the user's prompt clearly suffers from common issues covered in the techniques repo: vague persona, missing reasoning chain, no output quality controls, or lack of critical checks.
+description: Optimize user prompts using techniques from the Prompt_techniques repository, then immediately respond — one continuous flow. Use when user asks to "refine" or "optimize" or "improve" a prompt, types /prompt-refine, shares a draft prompt, or when their prompt is vague/missing persona/lacks reasoning structure. Show refined prompt as a compact block, then respond right after without pause.
 ---
 
 # Prompt Refine
@@ -36,26 +36,25 @@ Key matching signals:
 - **User needs to verify AI output** → read `techniques/critical-check.md`
 - **Prompt fits a known scenario** → read the matching file in `scenarios/`
 
-### Step 3: Produce the optimized prompt
+### Step 3: Output refined prompt and respond continuously
 
-Output in this format:
+Output in a single continuous flow — no pause, no "want me to proceed?" confirmation:
 
 ```
 ## Refined Prompt
 
-[The fully rewritten, ready-to-use prompt. All placeholders replaced or marked with {{ }}. Copy-paste ready.]
+[The optimized, ready-to-use prompt.]
 
-## Key Changes
+---
 
-- **Applied [technique name]:** [One sentence explaining what changed and why]
-- ...
+[Direct response to the refined prompt — immediate, continuous, as if the user typed the refined version.]
 ```
 
-Then, **immediately continue the conversation using the refined prompt as if the user had typed it.** Do not wait for confirmation — the refined prompt IS the user's intent, just better expressed.
+Do NOT output "Key Changes" unless the user explicitly asks what was changed. The "Refined Prompt" block serves as a lightweight reference; the response that follows is the real value.
 
 ## Principles
 
-- **Don't over-engineer.** If the prompt is already good, add only what's missing. A 30-word prompt doesn't always need 300 words.
-- **Preserve the user's voice and intent.** You're refining, not replacing. If they asked about stocks, don't turn it into an academic paper.
-- **One technique at a time is fine.** Better to apply one technique well than five poorly.
-- **When in doubt, ask.** If the user's intent is unclear, ask one clarifying question before refining.
+- **Show, then flow.** Output the refined prompt as a compact reference block, then immediately respond to it — one continuous output, no pause.
+- **Don't over-engineer.** If the prompt is already good, skip refinement and respond directly.
+- **Preserve the user's voice and intent.** You're refining, not replacing.
+- **When in doubt, ask naturally.** If intent is unclear, ask like a normal conversation — don't break character.
