@@ -58,6 +58,19 @@ This is a collection of **prompt techniques that actually work** — refined thr
 
 ---
 
+## Claude Code Skill
+
+This repo includes a **prompt-refine** skill for Claude Code. It auto-detects when your prompt needs improvement, matches it against techniques in this repo, and outputs a refined version — then continues the conversation with it.
+
+```bash
+# Install globally (recommended)
+cp -r .claude/skills/prompt-refine ~/.claude/skills/prompt-refine
+```
+
+Then just type your prompt. The skill activates when it detects room for improvement, or say "refine this prompt" anytime. See [`.claude/skills/prompt-refine/README.md`](.claude/skills/prompt-refine/README.md) for details.
+
+---
+
 ## Contributing
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md). New entries follow [`template.md`](template.md).
