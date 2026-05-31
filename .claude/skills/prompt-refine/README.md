@@ -1,67 +1,96 @@
 # Prompt Refine Skill
 
-A Claude Code skill that optimizes your prompts using battle-tested techniques from the [Prompt_techniques](../) repository. It reads the scenarios and techniques you've collected, matches them to your intent, and outputs a refined prompt — then continues the conversation with it.
+A Claude Code skill that optimizes your prompts before they reach the AI. It reads battle-tested techniques from the [Prompt_techniques](https://github.com/que3sui/Prompt_techniques) repository **and** your local memory (user preferences, project context, past feedback), matches them to your intent, then outputs a refined prompt and immediately responds to it — one continuous flow.
 
 ## What It Does
 
-- Reads your prompt draft
-- Auto-matches relevant techniques (role design, thinking chain, output quality, critical checks)
-- Outputs an optimized, ready-to-use prompt with a summary of changes
-- Automatically continues the conversation using the refined prompt
+```
+Your prompt → Read local memory (preferences) → Read repo (techniques)
+  → Refined prompt → Immediate response (no pause)
+```
+
+1. **Reads local memory** — your preferences, project context, feedback history
+2. **Reads the repo** — scenarios/ and techniques/ for matching methods
+3. **Outputs refined prompt** — compact reference block
+4. **Responds immediately** — continuous flow, no "want me to proceed?"
 
 ## Installation
 
 ### Global (recommended)
 
-Copy the skill to Claude Code's global skills directory so it works in any project:
-
 ```bash
 cp -r .claude/skills/prompt-refine ~/.claude/skills/prompt-refine
 ```
 
-Restart Claude Code or start a new session. The skill will auto-detect when you need prompt help.
+Works in any project. Restart Claude Code or start a new session.
 
 ### Project-only
 
-The skill is already in `.claude/skills/prompt-refine/`. Claude Code auto-discovers project-local skills — no extra setup needed if you're working in this repo.
+Already in `.claude/skills/prompt-refine/`. Auto-discovered when working in this repo.
 
-## Usage
+## Triggers
 
-**Auto-detect:** Just type a prompt you want to use. The skill activates when it detects your prompt could benefit from improvement.
+The skill activates when:
 
-**Explicit:** Say "refine this prompt", "optimize my prompt", or type `/prompt-refine`.
+- You explicitly ask: "refine this", "optimize my prompt", "improve this prompt"
+- You type a draft prompt that's vague, missing persona, or lacks reasoning structure
+- You seem uncertain about a prompt's quality
 
-**Example:**
+## Usage Examples
 
-```
-User: I want to ask AI to explain machine learning to me.
-
-Skill activates → reads repo → applies role-persona + output-quality techniques
-
-Output:
-## Refined Prompt
-请你以一个逻辑严密、类比生动的教授身份，给我完整讲述机器学习的基础概念。
-注意：禁止术语堆砌，每个概念用一句话解释后再深入。比喻要通俗且准确。
-
-## Key Changes
-- Applied role-persona: Added "professor" persona with specific traits
-- Applied output-quality: Added anti-jargon constraints and analogy requirements
-```
-
-## How It Works
-
-1. Reads your repo at `E:/AlphaLab/prompt_technique/` for techniques and scenarios
-2. Analyzes your prompt's intent and weaknesses
-3. Applies matching techniques from `techniques/`
-4. Outputs refined prompt + change summary
-5. Continues the conversation with the refined prompt
-
-## Repository Structure
-
-The skill depends on the Prompt_techniques repo structure:
+### Example 1: Vague prompt gets refined
 
 ```
-scenarios/     → Use-case prompts (academic, investment, product, career)
-techniques/    → Methods (role-persona, thinking-chain, output-quality, critical-check)
-template.md    → Entry format reference
+You: 教我使用Claude
+
+Skill activates → reads memory (knows you use Claude Code, not Claude.ai)
+→ reads role-persona + output-quality techniques
+→ refines to a structured prompt with persona and layered output
+→ responds immediately
 ```
+
+### Example 2: Already good prompt, no change
+
+```
+You: 帮我在 auth.ts:42 修一下这个 JWT 过期判断的 bug
+
+Skill: prompt is specific and actionable → skip refinement → respond directly
+```
+
+### Example 3: See what changed
+
+```
+You: 刚才改了什么？
+
+Skill: reveals the refinement and which techniques were applied
+```
+
+## Customization
+
+### Adding new techniques
+
+The skill reads from `E:/AlphaLab/prompt_technique/`. When you add new scenarios or techniques to the repo, the skill automatically uses them — no skill update needed.
+
+### Personalizing via memory
+
+The skill checks local memory at `~/.claude/projects/E--AlphaLab-prompt-technique/memory/`. To influence its behavior:
+
+- Feedback like "I prefer concise output" → skill stops expanding short prompts into long ones
+- Project context like "this is a data analysis project" → skill biases toward matching investment/analysis scenarios
+- Corrections like "don't add persona if I'm asking a quick question" → skill learns to skip refinement for short factual queries
+
+## Files
+
+```
+prompt-refine/
+├── SKILL.md    # Skill definition (loaded by Claude Code)
+└── README.md   # This file (installation + usage)
+```
+
+## Troubleshooting
+
+**Skill not triggering?** Try saying "refine this prompt" explicitly first. Auto-detection improves as you use it.
+
+**Refinement is too aggressive?** Tell Claude "skip refinement for short questions" — this gets remembered via local memory.
+
+**Repo path wrong?** Edit `SKILL.md` and update the `Repository` section to point to your local Prompt_techniques path.
