@@ -1,6 +1,6 @@
 ---
 name: prompt-refine
-description: Optimize user prompts using techniques from the Prompt_techniques repository, then immediately respond — one continuous flow. Use when user asks to "refine" or "optimize" or "improve" a prompt, types /prompt-refine, shares a draft prompt, or when their prompt is vague/missing persona/lacks reasoning structure. Show refined prompt as a compact block, then respond right after without pause.
+description: Optimize user prompts using techniques from the Prompt_techniques repository AND local memory (user preferences, project context, past feedback), then immediately respond — one continuous flow. Use when user asks to "refine" or "optimize" or "improve" a prompt, types /prompt-refine, shares a draft prompt, or when their prompt is vague/missing persona/lacks reasoning structure. Check memory before refining to personalize output.
 ---
 
 # Prompt Refine
@@ -24,7 +24,16 @@ Ask yourself:
 - Which scenario does this best fit? (Read relevant files from `scenarios/`)
 - What's wrong with the current prompt? (Vague? No persona? Will produce shallow output?)
 
-### Step 2: Match techniques
+### Step 2: Check local memory
+
+Read memory files to understand the user's preferences, context, and past feedback:
+
+- **Memory index:** `C:\Users\USERNAME\.claude\projects\E--AlphaLab-prompt-technique\memory\MEMORY.md`
+- **Read any relevant memory files** pointed to by the index — especially user preferences, project context, and feedback about prompt style
+
+Use this to personalize the refinement. For example, if memory says the user prefers concise output, don't expand a short prompt into a long one. If memory records a past correction ("stop doing X"), avoid that pattern.
+
+### Step 3: Match techniques
 
 Read the technique files that apply. Don't read all of them — only the ones relevant to this prompt. If unsure which apply, read `template.md` first for an overview, then pick.
 
@@ -36,7 +45,7 @@ Key matching signals:
 - **User needs to verify AI output** → read `techniques/critical-check.md`
 - **Prompt fits a known scenario** → read the matching file in `scenarios/`
 
-### Step 3: Output refined prompt and respond continuously
+### Step 4: Output refined prompt and respond continuously
 
 Output in a single continuous flow — no pause, no "want me to proceed?" confirmation:
 
