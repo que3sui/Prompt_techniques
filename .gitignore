@@ -1,0 +1,5 @@
+# Local Claude Code settings (may contain personal paths)
+.claude/settings.local.json
+
+# Local prompt harvest drafts
+.claude/prompts/
