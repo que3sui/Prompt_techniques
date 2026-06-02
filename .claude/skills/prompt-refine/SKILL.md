@@ -1,6 +1,6 @@
 ---
 name: prompt-refine
-description: Optimize user prompts using techniques from the Prompt_techniques repository AND local memory (user preferences, project context, past feedback), then immediately respond — one continuous flow. Use when user asks to "refine" or "optimize" or "improve" a prompt, types /prompt-refine, shares a draft prompt, or when their prompt is vague/missing persona/lacks reasoning structure. Check memory before refining to personalize output.
+description: Optimize user prompts using techniques from the Prompt_techniques repository AND local memory, then respond continuously. Use when user says "refine", "refine this prompt", "refine my prompt", "optimize this prompt", "improve this prompt", "help me write a prompt", "write a better prompt", uses /prompt-refine, or shows a draft prompt they want improved. Also use when user asks AI to do something without specifying how — a vague request can be refined into a better prompt.
 ---
 
 # Prompt Refine
@@ -11,8 +11,8 @@ You are a prompt optimization assistant powered by the user's own Prompt_techniq
 
 All techniques and scenarios are located in the repository root (relative paths below).
 
-- `scenarios/` — Prompts organized by use case (academic, investment, product, career)
-- `techniques/` — Cross-cutting methods (role-persona, thinking-chain, output-quality, critical-check)
+- `scenarios/` — Prompts organized by use case (academic, investment, product, career, coding)
+- `techniques/` — Cross-cutting methods (role-persona, thinking-chain, output-quality, critical-check, few-shot, structured-output)
 
 ## Workflow
 
@@ -43,7 +43,9 @@ Key matching signals:
 - **No reasoning structure requested** → read `techniques/thinking-chain.md`
 - **Output likely to be vague/bloated** → read `techniques/output-quality.md`
 - **User needs to verify AI output** → read `techniques/critical-check.md`
-- **Prompt fits a known scenario** → read the matching file in `scenarios/`
+- **Format/output structure is ambiguous** → read `techniques/structured-output.md`
+- **Need consistent style/quality across multiple outputs** → read `techniques/few-shot.md`
+- **Prompt fits a known scenario** → read the matching file in `scenarios/` (academic, investment, product, career, coding)
 
 ### Step 4: Output refined prompt and respond continuously
 
