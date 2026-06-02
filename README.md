@@ -26,15 +26,18 @@ This is a collection of **prompt techniques that actually work** — refined thr
 | Analyze financial data, plan research         | [`scenarios/investment.md`](scenarios/investment.md) |
 | Validate a product idea before building       | [`scenarios/product.md`](scenarios/product.md)       |
 | Rethink my career in the AI era               | [`scenarios/career.md`](scenarios/career.md)         |
+| Write, review, and debug code with AI         | [`scenarios/coding.md`](scenarios/coding.md)         |
 
 ### By Technique (I want to learn Y)
 
-| I want to...                     | Go to                                                          |
-| -------------------------------- | -------------------------------------------------------------- |
-| Design effective AI personas     | [`techniques/role-persona.md`](techniques/role-persona.md)     |
-| Force step-by-step reasoning     | [`techniques/thinking-chain.md`](techniques/thinking-chain.md) |
-| Control output quality & density | [`techniques/output-quality.md`](techniques/output-quality.md) |
-| Detect AI output traps           | [`techniques/critical-check.md`](techniques/critical-check.md) |
+| I want to...                       | Go to                                                                |
+| ---------------------------------- | -------------------------------------------------------------------- |
+| Design effective AI personas       | [`techniques/role-persona.md`](techniques/role-persona.md)           |
+| Force step-by-step reasoning       | [`techniques/thinking-chain.md`](techniques/thinking-chain.md)       |
+| Control output quality & density   | [`techniques/output-quality.md`](techniques/output-quality.md)       |
+| Detect AI output traps             | [`techniques/critical-check.md`](techniques/critical-check.md)       |
+| Use examples to anchor output      | [`techniques/few-shot.md`](techniques/few-shot.md)                   |
+| Get structured JSON/table/template | [`techniques/structured-output.md`](techniques/structured-output.md) |
 
 ---
 
