@@ -69,11 +69,11 @@ Skill: reveals the refinement and which techniques were applied
 
 ### Adding new techniques
 
-The skill reads from `E:/AlphaLab/prompt_technique/`. When you add new scenarios or techniques to the repo, the skill automatically uses them — no skill update needed.
+The skill reads from the Prompt_techniques repository (techniques/ and scenarios/ directories relative to repo root). When you add new scenarios or techniques to the repo, the skill automatically uses them — no skill update needed.
 
 ### Personalizing via memory
 
-The skill checks local memory at `~/.claude/projects/E--AlphaLab-prompt-technique/memory/`. To influence its behavior:
+The skill checks local memory (if available). To influence its behavior:
 
 - Feedback like "I prefer concise output" → skill stops expanding short prompts into long ones
 - Project context like "this is a data analysis project" → skill biases toward matching investment/analysis scenarios
@@ -87,10 +87,19 @@ prompt-refine/
 └── README.md   # This file (installation + usage)
 ```
 
+## When the Skill Skips Refinement
+
+The skill intentionally does NOT refine when:
+
+- The request is specific & actionable (file path, line number, concrete task)
+- It's a meta-question ("is this prompt good?")
+- A short, self-contained factual question
+- Follow-up messages in an ongoing thread
+
+This prevents over-engineering. See SKILL.md "Skip refinement entirely when" for full details.
+
 ## Troubleshooting
 
 **Skill not triggering?** Try saying "refine this prompt" explicitly first. Auto-detection improves as you use it.
 
 **Refinement is too aggressive?** Tell Claude "skip refinement for short questions" — this gets remembered via local memory.
-
-**Repo path wrong?** Edit `SKILL.md` and update the `Repository` section to point to your local Prompt_techniques path.
